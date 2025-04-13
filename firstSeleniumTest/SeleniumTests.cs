@@ -28,7 +28,7 @@ public class Tests
     [Test]
     public void CheckAuthorizationTest()
     {
-        driver.Title.Should().Contain("Новости");
+        driver.Title.Should().Contain("Новости", "после авторизации попадаем в раздел Новости");
     }
 
     [Test]
@@ -39,7 +39,8 @@ public class Tests
 
         DoExplicitWait();
 
-        driver.Title.Should().Contain("Сообщества");
+        driver.Title.Should().Contain("Сообщества",
+         "пользователь должен находиться на странице сообществ после перехода по кнопке");
     }
 
     [Test]
@@ -62,7 +63,8 @@ public class Tests
 
         var titleElement = driver.FindElement(By.CssSelector("[data-tid='DeleteButton']"));
 
-        titleElement.Text.Should().Contain("Удалить сообщество");
+        titleElement.Text.Should().Contain("Удалить сообщество",
+         "после создания сообщества есть возможность удалить его");
     }
 
     [Test]
@@ -89,7 +91,8 @@ public class Tests
 
         var nextNumber = GetCommentCount();
 
-        nextNumber.Should().Be(previousNumber + 1);
+        nextNumber.Should().Be(previousNumber + 1,
+         "после добавления комментария общее количество комментариев увеличивается на 1");
     }
 
     [Test]
@@ -108,7 +111,8 @@ public class Tests
 
         var nextLikeCount = GetLikesCount();
 
-        nextLikeCount.Should().Be(previousLikeCount + 1);
+        nextLikeCount.Should().Be(previousLikeCount + 1,
+         "после добавление лайка общее количество лайков увеличивается на 1");
     }
 
     private int GetLikesCount()
